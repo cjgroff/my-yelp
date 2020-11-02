@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+.login {
+  float: right;
+}
+.loginButton{
+  float: right;
+}
