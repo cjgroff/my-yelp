@@ -34,10 +34,14 @@ class Home extends React.Component{
         return (
             <div>
                 <div className="loginButton">
-                    {username.length > 0 ? username
-                        : <Link to='/login'>Login</Link>}
-                </div>
+                    {username.length > 0 ? 
+                    <div>
+                    <Link to='/add'>Add Business</Link> { username}
+                    </div>
+                    :<Link to='/login'>Login</Link>}
 
+                </div>
+                
                 <div>
                     <Searchpage/>
                 </div>

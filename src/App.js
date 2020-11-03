@@ -19,6 +19,7 @@ function App() {
         <Route path='/login' >
           <Login className="login" />
         </Route>
+        <Route path='/add' render={props => <AddBusiness {...props} />}/>
         {/*<Route path='/quiz' render={props => <Quiz {...props} />}/>
         <Route path='/imagesquiz' render={props => <Imagesquiz {...props} />}/>*/}
       </Switch>
