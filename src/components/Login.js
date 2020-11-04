@@ -17,7 +17,7 @@ class Login extends React.Component {
         event.preventDefault();
     }
 
-    onInputChnage = (event) => {
+    onInputChange = (event) => {
         const value = event.target.value;
         const name = event.target.name;
         this.setState({ [name]: value });
@@ -36,12 +36,12 @@ class Login extends React.Component {
         return (
             <div className="login">
                 <form onSubmit={this.onSubmit}>
-                    <lable>Username:</lable>
+                    <label>Username:</label>
                     <input
                         type="text"
                         name="username"
                         value={this.state.username}
-                        onChange={this.onInputChnage}
+                        onChange={this.onInputChange}
                     ></input>
                     <button type="submit">Login</button>
                 </form>

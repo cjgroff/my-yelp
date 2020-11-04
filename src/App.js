@@ -8,7 +8,7 @@ import {
   Route
 } from "react-router-dom";
 import Login from './components/Login';
-
+import AddBusiness from "./components/AddBusiness"
 
 
 function App() {
@@ -20,6 +20,7 @@ function App() {
           <Login className="login" />
         </Route>
         <Route path='/add' render={props => <AddBusiness {...props} />}/>
+        <Route path='/update' render={props => <AddBusiness update="true" {...props} />}/>
         {/*<Route path='/quiz' render={props => <Quiz {...props} />}/>
         <Route path='/imagesquiz' render={props => <Imagesquiz {...props} />}/>*/}
       </Switch>

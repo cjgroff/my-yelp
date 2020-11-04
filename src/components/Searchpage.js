@@ -10,7 +10,7 @@ import services from "../services/services"
     constructor(props){
         super(props)
         //console.log("Home ctor,props",props)
-        this.state = {searchtext:"What are you looking for?",businesses:[]}
+        this.state = {searchtext:"",businesses:[]}
     }
     livesearch = (event) => {
         const text = event.target.value;
@@ -18,13 +18,26 @@ import services from "../services/services"
         console.log("Bus:",businesses)
         this.setState({ businesses: businesses,searchtext: text});
     }
-        
+    delete = (event) => {
+        console.log("delete", event.target.getAttribute("business"))
+        services.deletebusiness(event.target.getAttribute("business"))
+        this.forceUpdate()
+    }
     
     render(){
-        const buslist= this.state.businesses.map(
+
+        const buslist= this.state.businesses.filter(b => b.active).map(
             (b) => <div>
                 {b.name},{b.location},{b.phone}
+                <Link
+                    to={{
+                    pathname: "/update",
+                    state: { id: b.id }
+                }}
+             >Update</Link>
+             <a  onClick={this.delete} business= {b.id} >Delete</a>
             </div>
+
         )
         return(
         <div>
@@ -34,6 +47,7 @@ import services from "../services/services"
                         type="text"
                         name="username"
                         value={this.state.searchtext}
+                        placeholder = "What are you looking for?"
                         onChange={this.livesearch}
                     ></input>
                     <button type="submit">Search</button>
