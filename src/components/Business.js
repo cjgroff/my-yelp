@@ -1,11 +1,11 @@
 import React from 'react';
-
+import services from "../services/services"
 export default class Business extends React.Component{
     constructor(props){
         super(props)
-        //console.log("Home ctor,props",props)
-        this.state = {searchtext:"What are you looking for?"}
+        console.log("business ctor,props",props)
+        this.state = {ids: props.location.state.bs }
     }
     render(){
-        return (<div>x</div>)
+        return (<div>{this.state.ids}</div>)
     }}

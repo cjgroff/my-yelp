@@ -1,24 +1,40 @@
 import AddBusiness from "../components/AddBusiness";
  
 let businesses = [
-    {id : 0 , active : true,name:"Panda Express",location:"1303 E University Blvd, Tucson, AZ 85719",
+    {id : 0 , active : true,name:"Panda Express",
+    address:"1303 E University Blvd",city: "Tucson",state: "AZ", zip: "85719",
     phone:"(520)626-3750"},
     {id : 1 ,active : true,name:"Chipotle Mexican Grill",
-    location:"905 E University Blvd Ste 149, Tucson, AZ 85719",
+    address:"905 E University Blvd Ste 149", city: "Tucson", state: "AZ", zip: "85719",
     phone:"(520)628-7967"},
     {id : 2,active : true,name:"Burger King",
-    location:"454 W Grant Rd, Tucson, AZ 85705",
+    address:"454 W Grant Rd", city:"Tucson", state:"AZ", zip:"85705",
     phone:"(520) 622-2752"}
 ]
-const services = {
-    findbusinesses:(text) => {
-        
-    
-    return(
-        businesses.slice(0,text.length)
+function strinc (str,inc){
+    return (
+    str.toLowerCase().includes(inc.toLowerCase())
     )
+}
+const services = {
+    findbusinesses:(text,city,state) => {
+        if (text == ""){
+            return []
+        }
+        let x = businesses.filter(b => strinc(b.name,text) && strinc(b.city,city) && strinc(b.state,state))
+        if (x){
+            return x
+        }
+        else{
+            return []
+        }
+    
+   // return(
+   //     businesses.slice(0,text.length)
+   // )
     },
     addbusiness:(business) => {
+        business.active = true
         business.id = businesses.length
         businesses.push(business)
     },
@@ -34,7 +50,8 @@ const services = {
     }
     ,
     allbusinesses:() => {
-       return(businesses) 
+       return businesses 
     }
+
 }
 export default services;

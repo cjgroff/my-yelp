@@ -6,6 +6,8 @@ import {
     Link
   } from "react-router-dom";
 import Searchpage from "./Searchpage"
+import Business from './Business';
+
 class Home extends React.Component{
     constructor(props){
         super(props)
@@ -32,6 +34,7 @@ class Home extends React.Component{
         }
 
         return (
+            
             <div>
                 <div className="loginButton">
                     {username.length > 0 ? 

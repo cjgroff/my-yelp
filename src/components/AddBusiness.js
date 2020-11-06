@@ -14,7 +14,7 @@ export default class AddBusiness extends React.Component{
         console.log("AddBusiness:",props)
         
         this.state ={finished: false, name: "",
-            location: "", phone: ""}
+            address: "",city: "",state:"",zip:"", phone: ""}
         if (props.update){
             this.state.update = true
             const id = props.location.state.id
@@ -22,8 +22,12 @@ export default class AddBusiness extends React.Component{
             const b = services.allbusinesses()[id]
             this.state.id = b.id
             this.state.name = b.name
-            this.state.location = b.location
+            this.state.address = b.address
+            this.state.city = b.city
+            this.state.state = b.state
+            this.state.zip = b.zip
             this.state.phone = b.phone
+            this.state.active = b.active
         }
     }
 onInputChange = (event) => {
@@ -35,7 +39,7 @@ onSubmit = (event) => {
         console.log('State:',this.state)
         this.setState({finished: true})
         const s = this.state
-        const b = {id : s.id,name: s.name, location: s.location, phone: s.phone}
+        const b = {id : s.id,name: s.name, active: s.active , address: s.address,city: s.city,state : s.state,zip: s.zip, phone: s.phone}
         if (this.state.update){
             services.updatebusiness(b)
         }
@@ -63,12 +67,33 @@ render(){
                     placeholder = "Business Name"
                     onChange={this.onInputChange}
                 ></input>
-            <label>Location:</label>
+            <label>Address:</label>
             <input
                 type="text"
-                name="location"
-                value={this.state.location}
-                placeholder = "Location"
+                name="address"
+                value={this.state.address}
+                placeholder = "Address"
+                onChange={this.onInputChange}
+            ></input>
+            <input
+                type="text"
+                name="city"
+                value={this.state.city}
+                placeholder = "City"
+                onChange={this.onInputChange}
+            ></input>
+            <input
+                type="text"
+                name="state"
+                value={this.state.state}
+                placeholder = "State"
+                onChange={this.onInputChange}
+            ></input>
+            <input
+                type="text"
+                name="zip"
+                value={this.state.zip}
+                placeholder = "Zip"
                 onChange={this.onInputChange}
             ></input>
             <label> Phone Number:</label>

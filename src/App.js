@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import Login from './components/Login';
 import AddBusiness from "./components/AddBusiness"
+import Business from './components/Business';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         </Route>
         <Route path='/add' render={props => <AddBusiness {...props} />}/>
         <Route path='/update' render={props => <AddBusiness update="true" {...props} />}/>
+        <Route path='/business' render={props => <Business  {...props} />}/>
         {/*<Route path='/quiz' render={props => <Quiz {...props} />}/>
         <Route path='/imagesquiz' render={props => <Imagesquiz {...props} />}/>*/}
       </Switch>
