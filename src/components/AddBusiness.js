@@ -59,7 +59,7 @@ render(){
         <div className="Add">
             {this.state.update ? "Update Business": "Add Business"}
             <form onSubmit={this.onSubmit}>
-                <label>Name:</label>
+                
                 <input
                     type="text"
                     name="name"
@@ -67,7 +67,7 @@ render(){
                     placeholder = "Business Name"
                     onChange={this.onInputChange}
                 ></input>
-            <label>Address:</label>
+            
             <input
                 type="text"
                 name="address"
@@ -96,7 +96,7 @@ render(){
                 placeholder = "Zip"
                 onChange={this.onInputChange}
             ></input>
-            <label> Phone Number:</label>
+            
             <input
                 type="text"
                 name="phone"

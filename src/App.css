@@ -42,3 +42,29 @@
 .loginButton{
   float: right;
 }
+p{
+  text-align: center;
+}
+.searchbar{
+  align-self: center;
+  
+}
+.Add{
+  display: block;
+  margin : 0 auto;
+}
+input[type="text"] {
+     display: block;
+     margin : 0 auto;
+}
+button{
+  /*align-self: center;*/
+  display: block;
+  margin : 0 auto;
+
+}
+body{
+  background-color: red ;
+}
+
+

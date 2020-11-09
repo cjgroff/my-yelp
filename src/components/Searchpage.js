@@ -44,14 +44,14 @@ import services from "../services/services"
         const buslist= this.state.businesses.filter(b => b.active)
         const busdiv= buslist.map(
             (b) => <div>
-                {b.name}, {b.address}, {b.city}, {b.state} {b.zip}, {b.phone}
+                {b.name}, {b.address}, {b.city}, {b.state} {b.zip}, {b.phone} |
                 <Link
                     to={{
                     pathname: "/update",
                     state: { id: b.id }
                 }}
-             >Update</Link>
-             <a  onClick={this.delete} business= {b.id} >Delete</a>
+             > Update</Link>
+            | <a  onClick={this.delete} business= {b.id} > Delete</a> |
             </div>
         )
         
@@ -68,7 +68,8 @@ import services from "../services/services"
 
         
         return(
-        <div>
+        <div className= "searchbar" >
+             
                 <form onSubmit={this.onSubmit}>
                     <p>Where should I look?</p>
                     <input
@@ -77,6 +78,7 @@ import services from "../services/services"
                         placeholder = "What city are you in?"
                         onChange={this.citysearch}
                     ></input>
+                    <div>
                     <input
                         type="text"
                         value={this.state.searchstate}
@@ -92,14 +94,18 @@ import services from "../services/services"
                         placeholder = "What are you looking for?"
                         onChange={this.livesearch}
                     ></input>
+                    
                     <button type="submit">Search</button>
+                    </div>
+                    
                     
                     
                     
                     
 
                 </form>
-                Result:{busdiv.length}
+                {busdiv.length == 0 ? "No Results found" : <div>Results: {busdiv.length}</div> }
+                
                 {busdiv}
 
         </div>

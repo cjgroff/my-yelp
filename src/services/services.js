@@ -3,13 +3,13 @@ import AddBusiness from "../components/AddBusiness";
 let businesses = [
     {id : 0 , active : true,name:"Panda Express",
     address:"1303 E University Blvd",city: "Tucson",state: "AZ", zip: "85719",
-    phone:"(520)626-3750"},
+    phone:"(520)626-3750",reviews: []},
     {id : 1 ,active : true,name:"Chipotle Mexican Grill",
     address:"905 E University Blvd Ste 149", city: "Tucson", state: "AZ", zip: "85719",
-    phone:"(520)628-7967"},
+    phone:"(520)628-7967",reviews: ["This was great"]},
     {id : 2,active : true,name:"Burger King",
     address:"454 W Grant Rd", city:"Tucson", state:"AZ", zip:"85705",
-    phone:"(520) 622-2752"}
+    phone:"(520) 622-2752",reviews: []}
 ]
 function strinc (str,inc){
     return (
@@ -51,7 +51,18 @@ const services = {
     ,
     allbusinesses:() => {
        return businesses 
+    },
+    businessbyid:(id) => {
+        //return businesses.filter((b) => b.id == id)[0]
+        return businesses[id]
+    },
+    addreview:(id,review) => {
+        console.log("addreview",id,review)
+        const b = businesses[id]
+        b.reviews.push(review)
+
     }
+    
 
 }
 export default services;
