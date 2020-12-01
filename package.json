@@ -1,4 +1,5 @@
 {
+  "homepage": "https://cjgroff.github.io/my-yelp",
   "name": "my-yelp",
   "version": "0.1.0",
   "private": true,
@@ -14,6 +15,7 @@
   },
   "scripts": {
     "predeploy": "npm run build",
+    "clean": "gh-pages-clean",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",

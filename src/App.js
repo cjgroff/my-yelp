@@ -15,7 +15,7 @@ import Business from './components/Business';
 function App() {
   return (
     <div style={{  
-      backgroundImage: "url(" + process.env.PUBLIC_URL  + 'images/coffee.jpg' + ")", backgroundSize: 'cover',objectFit: 'cover'}}>
+      backgroundImage: "url(" + process.env.PUBLIC_URL  + '/images/coffee.jpg' + ")", backgroundSize: 'cover',objectFit: 'cover'}}>
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Switch>
         <Route exact path='/' render={props => <Home {...props} />}/>
