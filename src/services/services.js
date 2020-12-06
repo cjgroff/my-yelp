@@ -31,16 +31,19 @@ const services = {
    // )
     },
     addbusiness:(business) => {
-        business.active = true
-        business.id = businesses.length
-        businesses.push(business)
+        const api = `http://localhost:3000/place`
+        fetch(api,{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(business)}
+        ).catch(e => console.log("Error",e))
     },
     updatebusiness:(business) => {
-        //replace element of choice with business
-        businesses[business.id] = business
-        console.log("update:",business)
-        console.log("update:",businesses)
-        
+        business.update = true
+        console.log("updatebus####:",business)
+        services.addbusiness(business)
     },
     deletebusiness:(id) => {
         businesses[id].active = false

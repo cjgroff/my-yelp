@@ -19,15 +19,22 @@ export default class AddBusiness extends React.Component{
             this.state.update = true
             const id = props.location.state.id
             console.log("Updating id:",id)
-            const b = services.allbusinesses()[id]
-            this.state.id = b.id
-            this.state.name = b.name
-            this.state.address = b.address
-            this.state.city = b.city
-            this.state.state = b.state
-            this.state.zip = b.zip
-            this.state.phone = b.phone
-            this.state.active = b.active
+            services.allbusinesses().then(x => x.json())
+            .then(bs =>{
+                console.log("bs",bs);
+                let b = bs.find(bsz => bsz.id == id)
+                this.setState({
+                    id : b.id,
+                    name : b.name,
+                    address : b.address,
+                    city : b.city,
+                    state : b.state,
+                    zip : b.zip,
+                    phone : b.phone
+                })
+            })
+            .catch(e => console.log("Fetch Failed",e))
+            
         }
     }
 onInputChange = (event) => {
@@ -44,7 +51,7 @@ onSubmit = (event) => {
             services.updatebusiness(b)
         }
         else {
-        services.addbusiness(b)
+            services.addbusiness(b)
         }
         event.preventDefault();
     }

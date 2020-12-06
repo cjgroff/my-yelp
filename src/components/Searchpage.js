@@ -20,10 +20,19 @@ import services from "../services/services"
     }
     livesearch = (event) => {
         const text = event.target.value;
+        this.setState({searchtext: text})
+        
+        if (text == '')
+        {
+            this.setState({businesses: []})
+            return 
+        }
         /*const businesses = services.findbusinesses(text,this.state.city,this.state.state)
         console.log("Bus:",businesses)
         this.setState({ businesses: businesses,searchtext: text});*/
-         services.findbusinesses(text,this.state.city,this.state.state).then(x => x.json()).then(b =>{console.log("b",b);this.setState({businesses:b})}).catch(e => console.log("Fetch Failed",e))
+         services.findbusinesses(text,this.state.city,this.state.state).then(x => x.json())
+         .then(b =>{console.log("b",b);this.setState({businesses:b})})
+         .catch(e => console.log("Fetch Failed",e))
 
     }
     citysearch = (event) => {
