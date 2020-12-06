@@ -1,15 +1,7 @@
 import AddBusiness from "../components/AddBusiness";
  
 let businesses = [
-    {id : 0 , active : true,name:"Panda Express",
-    address:"1303 E University Blvd",city: "Tucson",state: "AZ", zip: "85719",
-    phone:"(520)626-3750",reviews: []},
-    {id : 1 ,active : true,name:"Chipotle Mexican Grill",
-    address:"905 E University Blvd Ste 149", city: "Tucson", state: "AZ", zip: "85719",
-    phone:"(520)628-7967",reviews: ["This was great"]},
-    {id : 2,active : true,name:"Burger King",
-    address:"454 W Grant Rd", city:"Tucson", state:"AZ", zip:"85705",
-    phone:"(520) 622-2752",reviews: []}
+   
 ]
 function strinc (str,inc){
     return (
@@ -18,6 +10,11 @@ function strinc (str,inc){
 }
 const services = {
     findbusinesses:(text,city,state) => {
+        const api = `http://localhost:3000/search/${text}/${city},${state}`
+        console.log('api',api)
+        //fetch(api).then(x => x.json()).then(y => {this.setState({quiz: y});
+        //    console.log("quiz",y)}).catch(e => console.log("Fetch quiz error",e))
+        return fetch(api)
         if (text == ""){
             return []
         }
@@ -50,7 +47,14 @@ const services = {
     }
     ,
     allbusinesses:() => {
-       return businesses 
+        //const api = `https://cjgroff-imagequiz.herokuapp.com/quiz/${this.state.quiznum}`
+        const api = "http://localhost:3000/places"
+        console.log('api',api)
+        //fetch(api).then(x => x.json()).then(y => {this.setState({quiz: y});
+        //    console.log("quiz",y)}).catch(e => console.log("Fetch quiz error",e))
+        return fetch(api)
+        //This fetch return promise on which we can call then()
+       
     },
     businessbyid:(id) => {
         //return businesses.filter((b) => b.id == id)[0]

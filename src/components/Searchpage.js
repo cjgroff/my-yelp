@@ -20,9 +20,11 @@ import services from "../services/services"
     }
     livesearch = (event) => {
         const text = event.target.value;
-        const businesses = services.findbusinesses(text,this.state.city,this.state.state)
+        /*const businesses = services.findbusinesses(text,this.state.city,this.state.state)
         console.log("Bus:",businesses)
-        this.setState({ businesses: businesses,searchtext: text});
+        this.setState({ businesses: businesses,searchtext: text});*/
+         services.findbusinesses(text,this.state.city,this.state.state).then(x => x.json()).then(b =>{console.log("b",b);this.setState({businesses:b})}).catch(e => console.log("Fetch Failed",e))
+
     }
     citysearch = (event) => {
         const text = event.target.value;
@@ -40,8 +42,8 @@ import services from "../services/services"
     }
     
     render(){
-        console.log(services.allbusinesses())
-        const buslist= this.state.businesses.filter(b => b.active)
+        //console.log(services.allbusinesses())
+        const buslist= this.state.businesses//.filter(b => b.active)
         const busdiv= buslist.map(
             (b) => <div>
                 {b.name}, {b.address}, {b.city}, {b.state} {b.zip}, {b.phone} |
