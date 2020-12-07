@@ -4,7 +4,17 @@ export default class Business extends React.Component{
     constructor(props){
         super(props)
         console.log("business ctor,props",props)
-        this.state = {ids: props.location.state.bs, reviewinp: null, reviewtext: "" }
+        this.state = {ids: props.location.state.bs, reviewinp: null, reviewtext: "", businesses: []}
+        services.allbusinesses().then(x => x.json())
+            .then(allbs => {
+                console.log("allbs",allbs);
+                let bs = allbs.filter(b => this.state.ids.indexOf(b.id) != -1)
+                this.setState({businesses: bs})
+                
+                //let b = bs.find(bsz => bsz.id == id)
+                //this.setState({
+                    
+                })
 
     }
     reviewclick = (event) =>{
@@ -24,7 +34,7 @@ export default class Business extends React.Component{
         this.setState({reviewtext: value})
     }
     render(){
-        const bs = this.state.ids.map(services.businessbyid)
+        const bs = this.state.businesses
         const divs =[] 
         for (let i = 0; i < bs.length ; i++){
             const b = bs[i]

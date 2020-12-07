@@ -68,6 +68,11 @@ const services = {
         const b = businesses[id]
         b.reviews.push(review)
 
+    },
+    get_reviews:(bs) => {
+        const api = `http://localhost:3000/reviews/${bs.join(",")}`
+        console.log('api',api)
+        return fetch(api)
     }
     
 
