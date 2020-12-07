@@ -10,7 +10,7 @@ function strinc (str,inc){
 }
 const services = {
     findbusinesses:(text,city,state) => {
-        const api = `http://localhost:3000/search/${text}/${city},${state}`
+        const api = `https://cjgroff-nearbyplaces-api.herokuapp.com/search/${text}/${city},${state}`
         console.log('api',api)
         //fetch(api).then(x => x.json()).then(y => {this.setState({quiz: y});
         //    console.log("quiz",y)}).catch(e => console.log("Fetch quiz error",e))
@@ -31,7 +31,7 @@ const services = {
    // )
     },
     addbusiness:(business) => {
-        const api = `http://localhost:3000/place`
+        const api = `https://cjgroff-nearbyplaces-api.herokuapp.com/place`
         fetch(api,{
             method: "POST",
             headers: {
@@ -47,7 +47,7 @@ const services = {
     },
     deletebusiness:(id) => {
         console.log("Deleteplace",id)
-        const api = `http://localhost:3000/place/${id}`
+        const api = `https://cjgroff-nearbyplaces-api.herokuapp.com/place/${id}`
         return fetch(api,{
             method: "DELETE",
             headers: {
@@ -59,7 +59,7 @@ const services = {
     ,
     allbusinesses:() => {
         //const api = `https://cjgroff-imagequiz.herokuapp.com/quiz/${this.state.quiznum}`
-        const api = "http://localhost:3000/places"
+        const api = "https://cjgroff-nearbyplaces-api.herokuapp.com/places"
         console.log('api',api)
         //fetch(api).then(x => x.json()).then(y => {this.setState({quiz: y});
         //    console.log("quiz",y)}).catch(e => console.log("Fetch quiz error",e))
@@ -73,7 +73,7 @@ const services = {
     },
     addreview:(id,review) => {
         console.log("addreview",id,review)
-        const api = `http://localhost:3000/review/${id}`
+        const api = `https://cjgroff-nearbyplaces-api.herokuapp.com/review/${id}`
         return fetch(api,{
             method: "POST",
             headers: {
@@ -83,7 +83,7 @@ const services = {
         )
     },
     get_reviews:(bs) => {
-        const api = `http://localhost:3000/reviews/${bs.join(",")}`
+        const api = `https://cjgroff-nearbyplaces-api.herokuapp.com/reviews/${bs.join(",")}`
         console.log('api',api)
         return fetch(api)
     }
