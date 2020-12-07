@@ -46,7 +46,15 @@ const services = {
         services.addbusiness(business)
     },
     deletebusiness:(id) => {
-        businesses[id].active = false
+        console.log("Deleteplace",id)
+        const api = `http://localhost:3000/place/${id}`
+        return fetch(api,{
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            }
+        )
     }
     ,
     allbusinesses:() => {
