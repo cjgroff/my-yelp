@@ -5,16 +5,13 @@ export default class Business extends React.Component{
         super(props)
         console.log("business ctor,props",props)
         this.state = {ids: props.location.state.bs, reviewinp: null, reviewtext: "", businesses: []}
-        services.allbusinesses().then(x => x.json())
+        this.get_bus()
+        /*services.allbusinesses().then(x => x.json())
             .then(allbs => {
                 console.log("allbs",allbs);
                 let bs = allbs.filter(b => this.state.ids.indexOf(b.id) != -1)
                 this.setState({businesses: bs})
-                
-                //let b = bs.find(bsz => bsz.id == id)
-                //this.setState({
-                    
-                })
+                })*/
 
     }
     reviewclick = (event) =>{
@@ -22,9 +19,17 @@ export default class Business extends React.Component{
         this.setState({reviewinp: event.target.getAttribute("business")})
         console.log("review click:",this.state) 
     }
+    get_bus = () => {
+        services.allbusinesses().then(x => x.json())
+            .then(allbs => {
+                console.log("get_bus, allbs",allbs);
+                let bs = allbs.filter(b => this.state.ids.indexOf(b.id) != -1)
+                this.setState({businesses: bs})
+                })
+    }
     onSubmit = (event) => {
         console.log("sumbit review:",this.state.reviewinp)
-        services.addreview(this.state.reviewinp,this.state.reviewtext)
+        services.addreview(this.state.reviewinp,this.state.reviewtext).then(this.get_bus)
         this.setState({reviewinp: null})
         event.preventDefault();
         this.forceUpdate()

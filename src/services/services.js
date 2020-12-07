@@ -65,9 +65,14 @@ const services = {
     },
     addreview:(id,review) => {
         console.log("addreview",id,review)
-        const b = businesses[id]
-        b.reviews.push(review)
-
+        const api = `http://localhost:3000/review/${id}`
+        return fetch(api,{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({review: review})}
+        )
     },
     get_reviews:(bs) => {
         const api = `http://localhost:3000/reviews/${bs.join(",")}`
